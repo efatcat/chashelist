@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Чешелистность</title>
+    <title>Cheshelist Game | Эволюция в кастрюле</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -180,6 +180,10 @@
             padding: 5px 12px;
             margin-top: 8px;
         }
+        .next-area span {
+            color: white;
+            font-weight: 500;
+        }
         .next-preview {
             width: 56px;
             height: 56px;
@@ -349,7 +353,7 @@
 <body>
 <div class="game-main">
     <div class="game-header">
-        <h1>Чешелистность</h1>
+        <h1>🐱 CHESHELIST GAME</h1>
         <div class="subtitle">⚡ объединяй → эволюция → величие</div>
     </div>
 
@@ -404,32 +408,35 @@
     const CONFIG = {
         wallThickness: 14,
         groundHeight: 32,
-        gravity: 0.6,  // Ещё уменьшена гравитация
-        mergeDistance: 120,  // Максимальная дистанция слияния
+        gravity: 0.6,
+        mergeDistance: 120,
         maxCharacters: 55,
         spawnCooldown: 850,
         aimPower: 0.19
     };
 
-    // ВСЕ ПЕРСОНАЖИ - ДОБАВЛЕНЫ КОКОС И ЗАВР
+    // ВСЕ ПЕРСОНАЖИ - НОВЫЙ ПОРЯДОК СОГЛАСНО ТРЕБОВАНИЮ
+    // 1. Чешелист, 2. Пукозвук, 3. Пакет для яичек, 4. Петросянок, 5. Кокос,
+    // 6. Железный Тимур, 7. Цветоножка, 8. Чашеяичко, 9. Смесси, 10. Большое Гнездо,
+    // 11. Августул, 12. Ваниль, 13. Акварель, 14. Манул, 15. Пончара, 16. Завр, 17. Пума
     const CHARACTERS = [
         { id: 0, name: "Чешелист", short: "Ч", baseSize: 26, color: "#66ff68", points: 10, rarity: "common", svg: "cheselist" },
         { id: 1, name: "Пукозвук", short: "П", baseSize: 30, color: "#b0b0b0", points: 25, rarity: "common", svg: "pukozvuk" },
         { id: 2, name: "Пакет для яичек", short: "Я", baseSize: 34, color: "#ffd966", points: 50, rarity: "uncommon", svg: "paket" },
-        { id: 3, name: "Тохтамыш", short: "Т", baseSize: 38, color: "#cd9a5b", points: 100, rarity: "uncommon", svg: "tokhtamysh" },
-        { id: 4, name: "Железный Тимур", short: "Ж", baseSize: 42, color: "#b7aaff", points: 200, rarity: "rare", svg: "timur" },
-        { id: 5, name: "Цветоножка", short: "Ц", baseSize: 46, color: "#ff6b6b", points: 400, rarity: "rare", svg: "cvetonozhka" },
-        { id: 6, name: "Чашеяичко", short: "ЧЯ", baseSize: 50, color: "#e0e0e0", points: 800, rarity: "epic", svg: "chasheyaichko" },
-        { id: 7, name: "Смесси", short: "С", baseSize: 54, color: "#3cc7ff", points: 1600, rarity: "epic", svg: "smessi" },
-        { id: 8, name: "Большое Гнездо", short: "Г", baseSize: 58, color: "#f3d572", points: 3200, rarity: "legendary", svg: "gnezdo" },
-        { id: 9, name: "Августул", short: "А", baseSize: 62, color: "#5fdfce", points: 6400, rarity: "legendary", svg: "avgustul" },
-        { id: 10, name: "Пума", short: "ПУ", baseSize: 66, color: "#c2b9b0", points: 12800, rarity: "mythic", svg: "puma" },
-        { id: 11, name: "Акварель", short: "АК", baseSize: 70, color: "#f0e6d2", points: 25600, rarity: "mythic", svg: "akvarel" },
-        { id: 12, name: "Манул", short: "М", baseSize: 74, color: "#bfa98e", points: 51200, rarity: "divine", svg: "manul" },
-        { id: 13, name: "Пончара", short: "ПО", baseSize: 78, color: "#ffb7d2", points: 102400, rarity: "divine", svg: "ponchara" },
-        { id: 14, name: "Кокос", short: "КК", baseSize: 82, color: "#8B7355", points: 204800, rarity: "divine", svg: "kokos" },
-        { id: 15, name: "Завр", short: "ЗВ", baseSize: 86, color: "#5D8A3C", points: 409600, rarity: "ultimate", svg: "zavr" },
-        { id: 16, name: "Ваниль", short: "В", baseSize: 90, color: "#feffb0", points: 819200, rarity: "ultimate", svg: "vanil" }
+        { id: 3, name: "Петросянок", short: "ПТ", baseSize: 36, color: "#FFB6C1", points: 80, rarity: "uncommon", svg: "petrosanok" },
+        { id: 4, name: "Кокос", short: "КК", baseSize: 40, color: "#8B7355", points: 120, rarity: "rare", svg: "kokos" },
+        { id: 5, name: "Железный Тимур", short: "Ж", baseSize: 44, color: "#b7aaff", points: 200, rarity: "rare", svg: "timur" },
+        { id: 6, name: "Цветоножка", short: "Ц", baseSize: 48, color: "#ff6b6b", points: 350, rarity: "epic", svg: "cvetonozhka" },
+        { id: 7, name: "Чашеяичко", short: "ЧЯ", baseSize: 52, color: "#e0e0e0", points: 600, rarity: "epic", svg: "chasheyaichko" },
+        { id: 8, name: "Смесси", short: "С", baseSize: 56, color: "#3cc7ff", points: 1000, rarity: "legendary", svg: "smessi" },
+        { id: 9, name: "Большое Гнездо", short: "Г", baseSize: 60, color: "#f3d572", points: 1800, rarity: "legendary", svg: "gnezdo" },
+        { id: 10, name: "Августул", short: "А", baseSize: 64, color: "#5fdfce", points: 3200, rarity: "mythic", svg: "avgustul" },
+        { id: 11, name: "Ваниль", short: "В", baseSize: 68, color: "#feffb0", points: 5500, rarity: "mythic", svg: "vanil" },
+        { id: 12, name: "Акварель", short: "АК", baseSize: 72, color: "#f0e6d2", points: 10000, rarity: "divine", svg: "akvarel" },
+        { id: 13, name: "Манул", short: "М", baseSize: 76, color: "#bfa98e", points: 20000, rarity: "divine", svg: "manul" },
+        { id: 14, name: "Пончара", short: "ПО", baseSize: 80, color: "#ffb7d2", points: 40000, rarity: "ultimate", svg: "ponchara" },
+        { id: 15, name: "Завр", short: "ЗВ", baseSize: 84, color: "#5D8A3C", points: 80000, rarity: "ultimate", svg: "zavr" },
+        { id: 16, name: "Пума", short: "ПУ", baseSize: 88, color: "#c2b9b0", points: 160000, rarity: "legendary", svg: "puma" }
     ];
 
     let engine, world, runner;
@@ -440,7 +447,7 @@
     let canDrop = true;
     let gameActive = true;
     let pendingMerge = false;
-    let mergeQueue = []; // Очередь слияний
+    let gameCompleted = false;
 
     let isAiming = false;
     let aimStart = { x: 0, y: 0 };
@@ -522,14 +529,12 @@
         runner = Matter.Runner.create();
         Matter.Runner.run(runner, engine);
         
-        // Проверяем слияния каждый кадр
         Matter.Events.on(engine, 'afterUpdate', () => { 
             if(gameActive && !pendingMerge) {
                 checkMergesIntensive();
             }
         });
         
-        // Дополнительная проверка на коллизии
         Matter.Events.on(engine, 'collisionStart', (event) => {
             if(gameActive && !pendingMerge) {
                 checkCollisionMerge(event);
@@ -537,14 +542,12 @@
         });
     }
     
-    // Проверка слияний через коллизии (самый надёжный способ)
     function checkCollisionMerge(event) {
         const pairs = event.pairs;
         for(let pair of pairs) {
             const bodyA = pair.bodyA;
             const bodyB = pair.bodyB;
             
-            // Проверяем что оба тела - персонажи
             if(bodyA.characterId !== undefined && bodyB.characterId !== undefined) {
                 if(!bodyA.merged && !bodyB.merged && bodyA.canMerge && bodyB.canMerge) {
                     if(bodyA.characterId === bodyB.characterId && bodyA.characterId < CHARACTERS.length - 1) {
@@ -556,11 +559,9 @@
         }
     }
     
-    // Интенсивная проверка всех пар
     function checkMergesIntensive() {
         if(pendingMerge) return;
         
-        // Создаём массив активных персонажей
         const activeChars = characters.filter(c => !c.merged && c.canMerge);
         
         for(let i = 0; i < activeChars.length; i++) {
@@ -569,12 +570,10 @@
                 const B = activeChars[j];
                 
                 if(A.characterId === B.characterId && A.characterId < CHARACTERS.length - 1) {
-                    // Вычисляем расстояние между центрами
                     const dx = A.position.x - B.position.x;
                     const dy = A.position.y - B.position.y;
                     const distance = Math.sqrt(dx*dx + dy*dy);
                     
-                    // Порог слияния - сумма радиусов + большой запас
                     const mergeThreshold = A.circleRadius + B.circleRadius + 15;
                     
                     if(distance < mergeThreshold || distance < CONFIG.mergeDistance) {
@@ -704,7 +703,6 @@
         if(pendingMerge) return;
         pendingMerge = true;
         
-        // Проверяем что оба ещё существуют
         if(A.merged || B.merged) {
             pendingMerge = false;
             return;
@@ -715,11 +713,9 @@
         A.canMerge = false;
         B.canMerge = false;
         
-        // Удаляем старые тела
         Matter.World.remove(world, [A, B]);
         characters = characters.filter(c => c !== A && c !== B);
         
-        // Создаём нового персонажа
         let newId = Math.min(A.characterId + 1, CHARACTERS.length - 1);
         let newChar = CHARACTERS[newId];
         
@@ -753,23 +749,40 @@
             unlockedCharacters.sort((a,b) => a - b);
             updateCollectionUI();
             updateChainUI();
+            
+            // Проверяем, собраны ли все персонажи (все 17)
+            if(unlockedCharacters.length === CHARACTERS.length && !gameCompleted) {
+                gameCompleted = true;
+                showCompletionMessage();
+            }
         }
         
-        // Мощный визуальный эффект
         createSparkle(midX, midY, newChar.color, 30);
         createSparkle(midX - 25, midY - 20, '#ffcc66', 18);
         createSparkle(midX + 25, midY - 20, '#ffcc66', 18);
         createSparkle(midX, midY - 30, '#ffffff', 15);
         
-        if(newId === CHARACTERS.length - 1) {
-            endGame(true);
-        } else {
-            checkGameOver();
-        }
+        checkGameOver();
         
         setTimeout(() => {
             pendingMerge = false;
         }, 120);
+    }
+    
+    function showCompletionMessage() {
+        const modal = document.getElementById('game-over-modal');
+        document.getElementById('final-score').innerText = score.toLocaleString();
+        document.getElementById('unlocked-count').innerText = unlockedCharacters.length;
+        const titleEl = document.getElementById('game-result');
+        
+        titleEl.innerHTML = "🏆 ВЫ СОБРАЛИ ВСЕХ! 🏆<br><span style='font-size:0.7rem;'>можете продолжать играть или сделать перерождение</span>";
+        titleEl.style.color = "#e8b45e";
+        
+        modal.style.visibility = "visible";
+        modal.style.opacity = "1";
+        
+        // Не останавливаем игру - можно продолжать
+        // gameActive остаётся true
     }
 
     function checkGameOver() {
@@ -799,13 +812,8 @@
         document.getElementById('unlocked-count').innerText = unlockedCharacters.length;
         const titleEl = document.getElementById('game-result');
         
-        if(won) { 
-            titleEl.innerHTML = "🏆 ВАНИЛЬ РОЖДЕНА! 🏆"; 
-            titleEl.style.color = "#e8b45e"; 
-        } else { 
-            titleEl.innerHTML = "💥 КАСТРЮЛЯ ПЕРЕПОЛНЕНА 💥"; 
-            titleEl.style.color = "#ff8866"; 
-        }
+        titleEl.innerHTML = "💥 КАСТРЮЛЯ ПЕРЕПОЛНЕНА 💥";
+        titleEl.style.color = "#ff8866";
         
         modal.style.visibility = "visible";
         modal.style.opacity = "1";
@@ -823,6 +831,7 @@
         canDrop = true;
         gameActive = true;
         pendingMerge = false;
+        gameCompleted = false;
         
         document.getElementById('score').innerText = "0";
         document.getElementById('game-over-modal').style.visibility = "hidden";
